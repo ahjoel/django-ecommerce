@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+<section>
+    <h2 class="text-center pb-2">Les détails de {{ object.name }} le meilleur</h2>
+
+    <div class="row">
+        <div class="col-md-6">
+            <img src="{{ product.image.url }}" class="img-fluid" alt="{{ product.name }}">
+        </div>
+        <div class="col-md-6">
+            <h2>
+                {{ product.name }} <br>
+                {{ product.price|floatformat }} F CFA
+            </h2>
+            <form action="{% url 'cart_add' product.id %}" method="post">
+                {% csrf_token %}
+                {{ cart_product_form }}
+                <button type="submit" class="btn btn-primary">Ajouter au panier</button>
+            </form>
+        </div>
+    </div>
+
+    
+
+</section>
+
+{% endblock %}
